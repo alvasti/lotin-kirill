@@ -1,0 +1,50 @@
+HELP.md
+target/
+### bin folder ###
+bin/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+**/target/**
+static/*
+!static/file/
+static/file/*
+!static/file/templates/
+static/file/templates/*
+static/file/templates/inner/
+**/bin/**
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+### VS Code ###
+.vscode/
+
+**/logs/**
+logs/
+.attach*
+*.log
+
+
+#statis file
+#/static/
