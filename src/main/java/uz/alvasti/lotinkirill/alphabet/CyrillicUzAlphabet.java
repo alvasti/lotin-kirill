@@ -8,7 +8,7 @@ public class CyrillicUzAlphabet implements Alphabet {
 
     private final Character[] onlyLetters = {'А','а','Б','б','Д','д','Э','э','Е','е','Ф','ф','Г','г','Ҳ','ҳ','И','и','Ж','ж','К','к','Л','л','М','м','Н','н','О','о','П','п','Қ','қ','Р','р','С','с','Т','т','У','у','В','в','Х','х','Й','й','З','з','Ў','ў','Ғ','ғ','Ш','ш','Ч','ч','Ц','ц'};
 
-    private final boolean[] onlyLettersArr = new boolean[1100];
+    private final boolean[] onlyLettersArr = new boolean[65536];
 
     /*
      Нг нг
@@ -20,7 +20,7 @@ public class CyrillicUzAlphabet implements Alphabet {
 
     private final List<Character> allPossibleChars;
 
-    private final boolean[] allPossibleCharsArr = new boolean[65536];
+    private static final boolean[] allPossibleCharsArr = new boolean[65536];
 
     public CyrillicUzAlphabet() {
 
@@ -38,7 +38,7 @@ public class CyrillicUzAlphabet implements Alphabet {
         }
         this.allPossibleChars = List.copyOf(list);
         for (Character allPossibleChar : this.allPossibleChars) {
-            this.allPossibleCharsArr[allPossibleChar]=true;
+            allPossibleCharsArr[allPossibleChar]=true;
         }
     }
 
@@ -51,7 +51,7 @@ public class CyrillicUzAlphabet implements Alphabet {
     public boolean checkLetter(String s) {
 
         if (s.length() == 1) {
-            checkLetter(s.charAt(0));
+            return checkLetter(s.charAt(0));
         }
 
         for (String combinedLetter : combinedLetters) {
@@ -96,7 +96,7 @@ public class CyrillicUzAlphabet implements Alphabet {
         return characters;
     }
 
-    public boolean[] getAllPossibleCharsArr() {
+    public static boolean[] getAllPossibleCharsArr() {
         return allPossibleCharsArr;
     }
 }

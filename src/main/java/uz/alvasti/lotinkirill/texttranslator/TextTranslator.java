@@ -9,13 +9,13 @@ import uz.alvasti.lotinkirill.wordtranslator.WordTranslator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TextSplitter {
+public class TextTranslator {
 
     private final boolean[] wordPossibleChars = new boolean[65536];
 
     private final WordTranslator wordTranslator;
 
-    public TextSplitter() {
+    public TextTranslator() {
         List<Character> characters = new ArrayList<>();
         characters.addAll(new CyrillicUzAlphabet().getAllPossibleChars());
         characters.addAll(new LatinUzAlphabet().getAllPossibleChars());

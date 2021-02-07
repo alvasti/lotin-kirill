@@ -8,7 +8,7 @@ public class LatinUzAlphabet implements Alphabet {
 
     private final Character[] onlyLetters = {'A', 'a', 'B', 'b', 'D', 'd', 'E', 'e', 'F', 'f', 'G', 'g', 'H', 'h', 'I', 'i', 'J', 'j', 'K', 'k', 'L', 'l', 'M', 'm', 'N', 'n', 'O', 'o', 'P', 'p', 'Q', 'q', 'R', 'r', 'S', 's', 'T', 't', 'U', 'u', 'V', 'v', 'X', 'x', 'Y', 'y', 'Z', 'z'};
 
-    protected final boolean[] onlyLettersArr = new boolean[150];
+    protected final boolean[] onlyLettersArr = new boolean[65536];
 
     /*
      146 -  o' ning belgisi
@@ -20,7 +20,7 @@ public class LatinUzAlphabet implements Alphabet {
     private final Character[] characters = {145, 45, 146};
 
     private final List<Character> allPossibleChars;
-    private final boolean[] allPossibleCharsArr = new boolean[65536];
+    private final static boolean[] allPossibleCharsArr = new boolean[65536];
 
     public LatinUzAlphabet() {
         for (Character onlyLetter : onlyLetters) {
@@ -37,7 +37,7 @@ public class LatinUzAlphabet implements Alphabet {
         }
         this.allPossibleChars = List.copyOf(list);
         for (Character allPossibleChar : this.allPossibleChars) {
-            this.allPossibleCharsArr[allPossibleChar]=true;
+            allPossibleCharsArr[allPossibleChar]=true;
         }
     }
 
@@ -50,7 +50,7 @@ public class LatinUzAlphabet implements Alphabet {
     public boolean checkLetter(String s) {
 
         if (s.length() == 1) {
-            checkLetter(s.charAt(0));
+            return checkLetter(s.charAt(0));
         }
 
         for (String combinedLetter : combinedLetters) {
@@ -95,7 +95,7 @@ public class LatinUzAlphabet implements Alphabet {
         return characters;
     }
 
-    public boolean[] getAllPossibleCharsArr() {
+    public static boolean[] getAllPossibleCharsArr() {
         return allPossibleCharsArr;
     }
 }
