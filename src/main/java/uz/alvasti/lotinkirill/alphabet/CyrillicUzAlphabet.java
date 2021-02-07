@@ -56,6 +56,18 @@ public class CyrillicUzAlphabet implements Alphabet {
 
         return false;
     }
+
+    public Character[] getOnlyLetters() {
+        return onlyLetters;
+    }
+
+    public String[] getCombinedLetters() {
+        return combinedLetters;
+    }
+
+    public Character[] getCharacters() {
+        return characters;
+    }
 }
 /*
 "А а\n" +

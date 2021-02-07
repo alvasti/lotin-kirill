@@ -1,30 +1,63 @@
 package uz.alvasti.lotinkirill.wordtranslator;
 
+import uz.alvasti.lotinkirill.utils.CustomArrayUtil;
+
 import java.util.*;
 
-public class WordsLibrary implements Translate{
+public class WordsLibrary implements Translate {
 
     private static Map<Integer, String> cyrillicLatinWords;
     private static Map<Integer, String> latinCyrillicWords;
 
-    public boolean checkLatin(String word){
+    public boolean checkLatin(String word) {
 
         return WordsLibrary.latinCyrillicWords.containsKey(word.hashCode());
     }
 
-    public boolean checkKirill(String word){
+    public boolean checkKirill(String word) {
 
         return WordsLibrary.cyrillicLatinWords.containsKey(word.hashCode());
     }
 
     @Override
     public String translateToLatin(String word) {
-        return WordsLibrary.cyrillicLatinWords.get(word.hashCode());
+
+        return translateWithHashMap(WordsLibrary.cyrillicLatinWords, word);
     }
 
     @Override
     public String translateToCyrillic(String word) {
-        return WordsLibrary.cyrillicLatinWords.get(word.hashCode());
+        return translateWithHashMap(WordsLibrary.latinCyrillicWords, word);
+    }
+
+    private String translateWithHashMap(Map<Integer, String> wordsCompabilityMap, String word){
+
+        var wordsChar = word.toCharArray();
+
+        boolean isHave = true;
+        while (isHave) {
+            isHave = false;
+            int len = wordsChar.length;
+
+            for (int i = 0; i < len && !isHave; i++) {
+
+                for (int j = i + 1; j <= len && !isHave; j++) {
+
+                    String s = String.valueOf(Arrays.copyOfRange(wordsChar, i, j));
+                    s = wordsCompabilityMap.get(s.hashCode());
+
+                    if (s != null) {
+                        wordsChar = CustomArrayUtil.concatCharArrays(
+                                Arrays.copyOfRange(wordsChar, 0, i),
+                                s.toCharArray(),
+                                Arrays.copyOfRange(wordsChar, j, len));
+                        isHave = true;
+                    }
+                }
+            }
+        }
+
+        return String.valueOf(wordsChar);
     }
 
     static {
@@ -42,9 +75,8 @@ public class WordsLibrary implements Translate{
         int len = wordsInitialLength + wordsList.size();
         WordsLibrary.words = new String[len][2];
 
-        for (int i = 0; i < wordsInitialLength; i++) {
-            WordsLibrary.words[i] = WordsLibrary.wordsInitial[i];
-        }
+        System.arraycopy(WordsLibrary.wordsInitial, 0, WordsLibrary.words, 0, wordsInitialLength);
+
         for (String[] word : wordsList) {
             WordsLibrary.words[wordsInitialLength++] = word;
         }
@@ -63,6 +95,7 @@ public class WordsLibrary implements Translate{
 
     /**
      * “Ц” ҳарфи иштирок этган сўзларнинг имлоси
+     *
      * @link http://xushnudbek.blogspot.com/p/blog-page_1204.html
      */
     private static final String[][] wordsInitial = {
@@ -368,7 +401,7 @@ public class WordsLibrary implements Translate{
             {"юриспруденция", "yurisprudensiya"},
             {"Янцзи", "Yanszi"},
             {"Сентябрь", "Sentabr"},
-            {"Октябрь","Oktabr" },
+            {"Октябрь", "Oktabr"},
             {"Бюджет", "Budjet"}
     };
 
