@@ -47,14 +47,16 @@ public class TextTranslator {
         var textChars = text.toCharArray();
 
         StringBuilder wordBuilder = new StringBuilder("");
+
         for (char textChar : textChars) {
             if (wordPossibleChars[textChar]) {
                 wordBuilder.append(textChar);
             } else {
                 if (wordBuilder.length() > 0) {
                     builder.append(translateWord(wordBuilder.toString(), toLatin));
+                    wordBuilder = new StringBuilder("");
                 }
-                builder.append(textChars);
+                builder.append(textChar);
             }
         }
 

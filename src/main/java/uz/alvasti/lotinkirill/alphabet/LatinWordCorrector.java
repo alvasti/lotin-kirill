@@ -1,21 +1,63 @@
 package uz.alvasti.lotinkirill.alphabet;
 
+import uz.alvasti.lotinkirill.wordtranslator.Word;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.PrintWriter;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class LatinWordCorrector {
 
     private final LatinUzAlphabet latinUzAlphabet;
-    private final Character tutuq = 145;
+    private final Character tutuq = 8217;
     //tutuq belgisi va o' ning belgisi variantlari
-    private final Character[] tutuqAndO_G_Variants = {145, 39, 96};
+    private final Character[] tutuqAndO_G_Variants = {8217, 39, 96};
 
     //o' yoki g' belgisi
-    private final Character o_g_ = 146;
+    private final Character o_g_ = 8216;
 
-    private final String[] tutuqSignWords = {
-            "ma" + tutuq + "ruza", "a" + tutuq + "lo"
-    };
+    private final static String[] tutuqSignWords;
+    static {
+        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+        URL is = classloader.getResource("tutuq.txt");
+
+        List<String> list = new ArrayList<>();
+        if (is != null) {
+            try (BufferedReader br = new BufferedReader(new FileReader(is.getFile()))){
+
+                StringBuilder sb = new StringBuilder();
+                String line = br.readLine();
+
+                while (line != null) {
+                    sb.append(line);
+                    sb.append(System.lineSeparator());
+                    line = br.readLine();
+                }
+                for (String s : sb.toString().split(("\\r?\\n"))) {
+                    for (String s1 : s.split(",")) {
+                        if(s1.length()>0){
+                            list.add(s1);
+                        }
+                    }
+                }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else{
+            list.add("error");
+        }
+
+        tutuqSignWords = list.toArray(new String[0]);
+
+    }
 
     public LatinWordCorrector() {
         this.latinUzAlphabet = new LatinUzAlphabet();

@@ -247,7 +247,7 @@ public class LettersCompatibility {
         l = 4;
         c = 54;
         lh.put(asString(latCom[l]), asString(cyr[c]));
-        l = 4;
+        l = 5;
         c = 55;
         lh.put(asString(latCom[l]), asString(cyr[c]));
         //        Ч
@@ -272,6 +272,8 @@ public class LettersCompatibility {
         for (Map.Entry<String, String> entry : lh.entrySet()) {
             ch.put(entry.getValue(), entry.getKey());
         }
+
+        int a = 1;
     }
 
 

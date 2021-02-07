@@ -67,8 +67,7 @@ public class SubWordLibrary implements Translate{
             {"xs", "хц"},
             {"tss", "цц"},
             {"chs", "чц"},
-            {"shs", "шц"},
-            {"s", "ьц"}
+            {"shs", "шц"}
     };
 
     public final String[][] subWordsCyrillicInitial = {

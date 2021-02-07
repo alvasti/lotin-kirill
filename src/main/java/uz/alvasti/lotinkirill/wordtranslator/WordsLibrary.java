@@ -60,37 +60,6 @@ public class WordsLibrary implements Translate {
         return String.valueOf(wordsChar);
     }
 
-    static {
-
-        List<String[]> wordsList = new ArrayList<>();
-        for (String[] word : WordsLibrary.wordsInitial) {
-            if (!word[0].equals(word[0].toLowerCase()) && word[1].equals(word[1].toLowerCase())) {
-                String[] wordTemp = new String[2];
-                wordTemp[0] = word[0].toLowerCase();
-                wordTemp[1] = word[1].toLowerCase();
-                wordsList.add(wordTemp);
-            }
-        }
-        int wordsInitialLength = WordsLibrary.wordsInitial.length;
-        int len = wordsInitialLength + wordsList.size();
-        WordsLibrary.words = new String[len][2];
-
-        System.arraycopy(WordsLibrary.wordsInitial, 0, WordsLibrary.words, 0, wordsInitialLength);
-
-        for (String[] word : wordsList) {
-            WordsLibrary.words[wordsInitialLength++] = word;
-        }
-
-        var cyrillicLatinWords = new HashMap<Integer, String>();
-        var latinCyrillicWords = new HashMap<Integer, String>();
-        for (String[] word : WordsLibrary.words) {
-            cyrillicLatinWords.put(word[0].hashCode(), word[1]);
-            latinCyrillicWords.put(word[1].hashCode(), word[0]);
-        }
-        WordsLibrary.cyrillicLatinWords = Map.copyOf(cyrillicLatinWords);
-        WordsLibrary.latinCyrillicWords = Map.copyOf(latinCyrillicWords);
-    }
-
     private static String[][] words;
 
     /**
@@ -404,6 +373,37 @@ public class WordsLibrary implements Translate {
             {"Октябрь", "Oktabr"},
             {"Бюджет", "Budjet"}
     };
+
+    static {
+
+        List<String[]> wordsList = new ArrayList<>();
+        for (String[] word : WordsLibrary.wordsInitial) {
+            if (!word[0].equals(word[0].toLowerCase()) && word[1].equals(word[1].toLowerCase())) {
+                String[] wordTemp = new String[2];
+                wordTemp[0] = word[0].toLowerCase();
+                wordTemp[1] = word[1].toLowerCase();
+                wordsList.add(wordTemp);
+            }
+        }
+        int wordsInitialLength = WordsLibrary.wordsInitial.length;
+        int len = wordsInitialLength + wordsList.size();
+        WordsLibrary.words = new String[len][2];
+
+        System.arraycopy(WordsLibrary.wordsInitial, 0, WordsLibrary.words, 0, wordsInitialLength);
+
+        for (String[] word : wordsList) {
+            WordsLibrary.words[wordsInitialLength++] = word;
+        }
+
+        var cyrillicLatinWords = new HashMap<Integer, String>();
+        var latinCyrillicWords = new HashMap<Integer, String>();
+        for (String[] word : WordsLibrary.words) {
+            cyrillicLatinWords.put(word[0].hashCode(), word[1]);
+            latinCyrillicWords.put(word[1].hashCode(), word[0]);
+        }
+        WordsLibrary.cyrillicLatinWords = Map.copyOf(cyrillicLatinWords);
+        WordsLibrary.latinCyrillicWords = Map.copyOf(latinCyrillicWords);
+    }
 
 }
 
