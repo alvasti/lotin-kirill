@@ -1,5 +1,7 @@
 package uz.alvasti.lotinkirill.alphabet;
 
+import java.util.List;
+
 public interface Alphabet {
 
     boolean checkLetter(Character c);
@@ -7,6 +9,8 @@ public interface Alphabet {
     boolean checkLetter(String c);
 
     boolean checkAnyCharacter(Character c);
+
+    List<Character> getAllPossibleChars();
 
     default boolean checkWord(String s) {
 

@@ -1,5 +1,8 @@
 package uz.alvasti.lotinkirill.alphabet;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class LatinWordCorrector {
 
     private final LatinUzAlphabet latinUzAlphabet;
@@ -107,4 +110,7 @@ public class LatinWordCorrector {
     }
 
 
+    public List<Character> getTutuqAndO_G_Variants() {
+        return Arrays.asList(tutuqAndO_G_Variants);
+    }
 }

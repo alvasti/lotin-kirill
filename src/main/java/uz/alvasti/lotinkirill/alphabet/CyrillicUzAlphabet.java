@@ -1,5 +1,9 @@
 package uz.alvasti.lotinkirill.alphabet;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class CyrillicUzAlphabet implements Alphabet {
 
     private final Character[] onlyLetters = {'А','а','Б','б','Д','д','Э','э','Е','е','Ф','ф','Г','г','Ҳ','ҳ','И','и','Ж','ж','К','к','Л','л','М','м','Н','н','О','о','П','п','Қ','қ','Р','р','С','с','Т','т','У','у','В','в','Х','х','Й','й','З','з','Ў','ў','Ғ','ғ','Ш','ш','Ч','ч','Ц','ц'};
@@ -14,10 +18,27 @@ public class CyrillicUzAlphabet implements Alphabet {
 
     private final Character[] characters = {'ъ' , 'Ъ', '-' };
 
+    private final List<Character> allPossibleChars;
+
+    private final boolean[] allPossibleCharsArr = new boolean[65536];
+
     public CyrillicUzAlphabet() {
 
         for (Character onlyLetter : onlyLetters) {
             onlyLettersArr[onlyLetter] = true;
+        }
+
+        List<Character> list = new ArrayList<>();
+        list.addAll(Arrays.asList(onlyLetters));
+        list.addAll(Arrays.asList(characters));
+        for (String combinedLetter : combinedLetters) {
+            for (char c : combinedLetter.toCharArray()) {
+                list.add(c);
+            }
+        }
+        this.allPossibleChars = List.copyOf(list);
+        for (Character allPossibleChar : this.allPossibleChars) {
+            this.allPossibleCharsArr[allPossibleChar]=true;
         }
     }
 
@@ -57,6 +78,12 @@ public class CyrillicUzAlphabet implements Alphabet {
         return false;
     }
 
+    @Override
+    public List<Character> getAllPossibleChars() {
+
+        return this.allPossibleChars;
+    }
+
     public Character[] getOnlyLetters() {
         return onlyLetters;
     }
@@ -67,6 +94,10 @@ public class CyrillicUzAlphabet implements Alphabet {
 
     public Character[] getCharacters() {
         return characters;
+    }
+
+    public boolean[] getAllPossibleCharsArr() {
+        return allPossibleCharsArr;
     }
 }
 /*

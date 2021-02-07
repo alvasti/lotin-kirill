@@ -16,7 +16,21 @@ public abstract class AlphabetChecker {
         return !this.isLatin;
     }
 
-    public static boolean checkIsLatin(String word) {
-        return true;
+    public static boolean checkIsLatin(String text) {
+
+        var textChars = text.toCharArray();
+
+        int cyrCount = 0;
+        var cyrArr = new CyrillicUzAlphabet().getAllPossibleCharsArr();
+        for (char c : textChars) {
+            cyrCount += cyrArr[c] ? 1 : 0;
+        }
+
+        int latCount = 0;
+        var latArr = new LatinUzAlphabet().getAllPossibleCharsArr();
+        for (char c : textChars) {
+            latCount += latArr[c] ? 1 : 0;
+        }
+        return latCount > cyrCount;
     }
 }
