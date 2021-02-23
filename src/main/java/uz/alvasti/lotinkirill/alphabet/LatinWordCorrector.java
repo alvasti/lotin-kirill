@@ -2,10 +2,7 @@ package uz.alvasti.lotinkirill.alphabet;
 
 import uz.alvasti.lotinkirill.wordtranslator.Word;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -25,11 +22,11 @@ public class LatinWordCorrector {
     private final static String[] tutuqSignWords;
     static {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-        URL is = classloader.getResource("tutuq.txt");
+        var is = classloader.getResourceAsStream("tutuq.txt");
 
         List<String> list = new ArrayList<>();
         if (is != null) {
-            try (BufferedReader br = new BufferedReader(new FileReader(is.getFile()))){
+            try (BufferedReader br = new BufferedReader( new InputStreamReader(is))){
 
                 StringBuilder sb = new StringBuilder();
                 String line = br.readLine();

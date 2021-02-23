@@ -43,6 +43,7 @@ public class TextTranslator {
 
     private String translateText(String text, boolean toLatin) {
 
+        text = text + "!";
         StringBuilder builder = new StringBuilder();
         var textChars = text.toCharArray();
 
@@ -59,6 +60,7 @@ public class TextTranslator {
                 builder.append(textChar);
             }
         }
+        builder.deleteCharAt(builder.length() - 1);
 
         return builder.toString();
     }
