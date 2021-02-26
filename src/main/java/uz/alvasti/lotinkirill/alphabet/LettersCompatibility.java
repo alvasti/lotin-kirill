@@ -70,7 +70,7 @@ public class LettersCompatibility {
         c = 5;
         lh.put(asString(lat[l]), asString(cyr[c]));
 
-        //E
+        //E uzb
         l = 6;
         c = 6;
 
@@ -79,13 +79,13 @@ public class LettersCompatibility {
         c = 7;
         lh.put(asString(lat[l]), asString(cyr[c]));
 
-        //Э
+        //Е kirill
         l = 6;
         c = 8;
-        lh.put(asString(lat[l]), asString(cyr[c]));
+        lh.put(asString(lat[44] + "" + lat[l]), asString(cyr[c]));
         l = 7;
         c = 9;
-        lh.put(asString(lat[l]), asString(cyr[c]));
+        lh.put(asString(lat[45] + "" + lat[l]), asString(cyr[c]));
 
         //F
         l = 8;
@@ -259,7 +259,7 @@ public class LettersCompatibility {
         lh.put(asString(latCom[l]), asString(cyr[c]));
 
         int l1;
-        //        Ц
+        //Ц
         l = 36;
         l1 = 34;
         c = 58;
@@ -268,6 +268,37 @@ public class LettersCompatibility {
         l1 = 34;
         c = 59;
         lh.put(asString(lat[l]) + asString(lat[l1]), asString(cyr[c]));
+
+        //Ё
+        l = 44;
+        l1 = 27;
+        c = 60;
+        lh.put(asString(lat[l]) + asString(lat[l1]), asString(cyr[c]));
+        l = 45;
+        l1 = 27;
+        c = 61;
+        lh.put(asString(lat[l]) + asString(lat[l1]), asString(cyr[c]));
+
+        //Ю
+        l = 44;
+        l1 = 39;
+        c = 62;
+        lh.put(asString(lat[l]) + asString(lat[l1]), asString(cyr[c]));
+        l = 45;
+        l1 = 39;
+        c = 63;
+        lh.put(asString(lat[l]) + asString(lat[l1]), asString(cyr[c]));
+
+        //Я
+        l = 44;
+        l1 = 1;
+        c = 64;
+        lh.put(asString(lat[l]) + asString(lat[l1]), asString(cyr[c]));
+        l = 45;
+        l1 = 1;
+        c = 65;
+        lh.put(asString(lat[l]) + asString(lat[l1]), asString(cyr[c]));
+
 
         for (Map.Entry<String, String> entry : lh.entrySet()) {
             ch.put(entry.getValue(), entry.getKey());
@@ -286,24 +317,22 @@ public class LettersCompatibility {
     }
 
     /**
-     *
      * @param letter cyrillic letter only
      * @return latin letter
      */
-    public String toLatin(String letter){
+    public String toLatin(String letter) {
         return ch.get(letter);
     }
 
-    public String toLatin(Character letter){
+    public String toLatin(Character letter) {
         return toLatin(asString(letter));
     }
 
     /**
-     *
      * @param letter latin letter only
      * @return cyrillic letter
      */
-    public String toCyrillic(String letter){
+    public String toCyrillic(String letter) {
         return lh.get(letter);
     }
 

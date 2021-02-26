@@ -33,9 +33,10 @@ public class SubWordLibrary implements Translate{
             {"Iye", "Ие"},
             {"iye", "ие"},
             {"eye", "ее"},
-            {"ye", "е"},
             {"YE", "Е"},
-            {"Ye", "Е"},
+            {"YU", "Ю"},
+            {"YA", "Я"},
+            {"YO", "Ё"},
             {"yoye", "ёе"},
             {"oye", "ое"},
             {"uye", "уе"},
@@ -116,7 +117,14 @@ public class SubWordLibrary implements Translate{
             {"TSIKL", "ЦИКЛ"},
             {"TSIO", "ЦИО"},
             {"TSIU", "ЦИУ"},
-            {"SIU", "ЦИУ"}
+            {"SIU", "ЦИУ"},
+            {"Yo‘", "Йў"},
+            {"YO‘", "ЙЎ"},
+            {"yo‘", "йў"},
+            {"SH","Ш"},
+            {"YA","Я"},
+            {"YU","Ю"},
+            {"YO","Ё"},
     };
 
     public final String[][] subWordsCyrillicInitial = {
@@ -209,7 +217,7 @@ public class SubWordLibrary implements Translate{
             {"ЦИКЛ", "TSIKL"},
             {"ЦИО", "TSIO"},
             {"ЦИУ", "TSIU"},
-            {"ЦИУ", "SIU"},
+            {"ЦИУ", "SIU"}
     };
 
 

@@ -13,7 +13,7 @@ public class Example {
     public static void main(String[] args) {
 
 
-        String text = "salom mening ismim Abdullajon, Sizning ismingiz nima?";
+        String text = "YASHNAR Yashnar Yo'ldosh";
         TextTranslator textTranslator = new TextTranslator();
 
         System.out.println(textTranslator.translateToCyrillic(text));
