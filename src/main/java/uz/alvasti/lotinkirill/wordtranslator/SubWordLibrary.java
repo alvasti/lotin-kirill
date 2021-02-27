@@ -25,7 +25,7 @@ public class SubWordLibrary implements Translate{
     }
 
     private final String[][] subWordsLatinInitial = {
-            {"o'jaz", "ўъжаз"},
+            {"o‘jaz", "ўъжаз"},
             {"o‘jiza", "ўъжиза"},
             {"o‘tabar", "ўътабар"},
             {"o‘tadil", "ўътадил"},
@@ -125,6 +125,10 @@ public class SubWordLibrary implements Translate{
             {"YA","Я"},
             {"YU","Ю"},
             {"YO","Ё"},
+            {"SʼH", "СҲ"},
+            {"Sʼh", "Сҳ"},
+            {"sʼh", "сҳ"},
+            {"syom", "СЪЁМ"}
     };
 
     public final String[][] subWordsCyrillicInitial = {
@@ -217,7 +221,22 @@ public class SubWordLibrary implements Translate{
             {"ЦИКЛ", "TSIKL"},
             {"ЦИО", "TSIO"},
             {"ЦИУ", "TSIU"},
-            {"ЦИУ", "SIU"}
+            {"ЦИУ", "SIU"},
+            {"СҲ", "SʼH"},
+            {"Сҳ", "Sʼh"},
+            {"сҳ", "sʼh"},
+            {"ЪЮ", "YU"},
+            {"ъю", "yu"},
+            {"ЬО", "YO"},
+            {"ьо", "yo"},
+            {"ЬЕ", "YE"},
+            {"ье", "ye"},
+            {"ЬЁ", "YO"},
+            {"ьё", "yo"},
+            {"ЪЕ", "YE"},
+            {"ъе", "ye"},
+            {"ЪЁ", "YO"},
+            {"ъё", "yo"}
     };
 
 

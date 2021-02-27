@@ -15,8 +15,8 @@ public class Example {
 
         String testUpper = "ЪАаБбДsdsdsъwewewe123''';3[12 6 sentyabr ";
         System.out.println(testUpper.toUpperCase());
-        String text = "a'zam E'LON  sa'as6 sentyabr ";
-        String text1 = "аЪзам эЪлон 6 центябр";
+        String text = "o'jaz a'zamjondek E'LON  sa'as6 sentyabr SYOM";
+        String text1 = "ўъжаз АДЪЮНКТ СЪЁМ аЪзамжондэк эЪлон 6 центябр";
         TextTranslator textTranslator = new TextTranslator();
 
         System.out.println(textTranslator.translateAuto(text));
