@@ -13,10 +13,15 @@ public class Example {
     public static void main(String[] args) {
 
 
-        String text = "YASHNAR Yashnar Yo'ldosh";
+        String testUpper = "ЪАаБбДsdsdsъwewewe123''';3[12 6 sentyabr ";
+        System.out.println(testUpper.toUpperCase());
+        String text = "a'zam E'LON  sa'as6 sentyabr ";
+        String text1 = "аЪзам эЪлон 6 центябр";
         TextTranslator textTranslator = new TextTranslator();
 
-        System.out.println(textTranslator.translateToCyrillic(text));
+        System.out.println(textTranslator.translateAuto(text));
+        System.out.println();
+        System.out.println(textTranslator.translateAuto(text1));
 
     }
 

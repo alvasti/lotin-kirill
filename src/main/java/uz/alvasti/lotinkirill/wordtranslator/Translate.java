@@ -10,9 +10,9 @@ public interface Translate {
     default String translate(Word word){
 
         if(word.isLatin()){
-            return translateToCyrillic(word.getWord());
+            return translateToCyrillic(word.getText());
         }
-        return translateToLatin(word.getWord());
+        return translateToLatin(word.getText());
 
     }
 

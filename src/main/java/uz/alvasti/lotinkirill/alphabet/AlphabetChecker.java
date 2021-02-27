@@ -2,15 +2,9 @@ package uz.alvasti.lotinkirill.alphabet;
 
 public abstract class AlphabetChecker {
 
-    private final boolean isLatin;
+    protected Boolean isLatin = null;
 
-    public AlphabetChecker(String word) {
-        this.isLatin = AlphabetChecker.checkIsLatin(word);
-    }
-
-    public boolean isLatin() {
-        return this.isLatin;
-    }
+    public abstract boolean isLatin();
 
     public boolean isCyrillic() {
         return !this.isLatin;

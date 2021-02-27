@@ -37,9 +37,10 @@ public class LettersCompatibility {
         l = 0;
         c = 0;
         lh.put(asString(latChar[l]), asString(cyrChar[c]));
+        //Ъ ga o'zbek tilida bir xil moslik , so'zni upper case ga tekshirib tarjima qilingan so'zni qaytib Uppercase o'tkkaziladi
         l = 0;
         c = 1;
-        lh.put(asString(latChar[l]), asString(cyrChar[c]));
+        ch.put(asString(cyrChar[c]), asString(latChar[l]));
         //- belgisi
         l = 1;
         c = 2;
