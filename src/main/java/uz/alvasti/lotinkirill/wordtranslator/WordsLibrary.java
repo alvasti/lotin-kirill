@@ -30,9 +30,36 @@ public class WordsLibrary implements Translate {
         return translateWithHashMap(WordsLibrary.latinCyrillicWords, word);
     }
 
-    private String translateWithHashMap(Map<Integer, String> wordsCompabilityMap, String word){
+    /**
+     * camelCase, PascalCase yaxshi ishlamasligi mumkin
+     * only lower case, ONLY UPPER CASE, Capital Case
+     */
+    private String translateWithHashMap(Map<Integer, String> wordsCompabilityMap, String word) {
 
-        var wordsChar = word.toCharArray();
+        LETTER_CASES wordCase = null;
+        if (word.toUpperCase().equals(word)) {
+            wordCase = LETTER_CASES.UPPER_CASE;
+        } else {
+            if (word.toLowerCase().equals(word)) {
+                wordCase = LETTER_CASES.LOWER_CASE;
+            } else {
+                if (word.length() > 1) {
+                    String firstLetter = word.charAt(0) + "";
+                    String otherLetters = word.substring(1);
+                    if (firstLetter.toUpperCase().equals(firstLetter) &&
+                            otherLetters.toLowerCase().equals(otherLetters)) {
+                        wordCase = LETTER_CASES.CAMEL_CASE;
+                    }
+                } else {
+                    return word;
+                }
+            }
+        }
+
+        if (wordCase == null) {
+            return word;
+        }
+        var wordsChar = word.toLowerCase().toCharArray();
 
         boolean isHave = true;
         while (isHave) {
@@ -57,7 +84,24 @@ public class WordsLibrary implements Translate {
             }
         }
 
-        return String.valueOf(wordsChar);
+        String result = word;
+        switch (wordCase) {
+            case UPPER_CASE: {
+                result = String.valueOf(wordsChar).toUpperCase();
+                break;
+            }
+            case LOWER_CASE: {
+                result = String.valueOf(wordsChar).toLowerCase();
+                break;
+            }
+            default: {
+
+                String firstLetter = wordsChar[0] + "";
+                result = firstLetter.toUpperCase() + String.valueOf(wordsChar, 1, wordsChar.length - 1).toLowerCase();
+                break;
+            }
+        }
+        return result;
     }
 
     private static String[][] words;
@@ -74,8 +118,8 @@ public class WordsLibrary implements Translate {
      * console.log("{\""+key+"\", "+val.replace('[', '').replace(']','')+"\"},");
      * val = val.substr(0,index);
      * }
-     *       console.log("{\""+key+"\", "+val+"\"},");
-     *    };
+     * console.log("{\""+key+"\", "+val+"\"},");
+     * };
      */
     private static final String[][] wordsInitial = {
             {"абстракция", "abstraksiya"},
@@ -103,12 +147,12 @@ public class WordsLibrary implements Translate {
             {"аукцион", "auksion"},
             {"ацетон", "atseton"},
             {"ацтек", "atstek"},
-            {"Баренц", "Barens"},
-            {"Вадуц", "Vaduts"},
+            {"баренц", "barens"},
+            {"вадуц", "vaduts"},
             {"вакцина", "vaksina"},
             {"вариация", "variatsiya"},
             {"вегетация", "vegetatsiya"},
-            {"Венеция", "Venetsiya"},
+            {"венеция", "venetsiya"},
             {"вентиляция", "ventilyatsiya"},
             {"вибрация", "vibratsiya"},
             {"вице-", "vitse-"},
@@ -121,9 +165,9 @@ public class WordsLibrary implements Translate {
             {"горчица", "gorchitsa"},
             {"гравитацион", "gravitatsion"},
             {"гравитация", "gravitatsiya"},
-            {"Греция", "Gretsiya"},
-            {"Даймлер-бенц", "Daymler-bens"},
-            {"Данциг", "Dansig"},
+            {"греция", "gretsiya"},
+            {"даймлер-бенц", "daymler-bens"},
+            {"данциг", "dansig"},
             {"девальвация", "devalvatsiya"},
             {"дегустация", "degustatsiya"},
             {"дедукция", "deduksiya"},
@@ -152,7 +196,7 @@ public class WordsLibrary implements Translate {
             {"дифференциал", "differensial"},
             {"дифференциация", "differensiatsiya"},
             {"дифференция", "differensiya"},
-            {"Донецк", "Donetsk"},
+            {"донецк", "donetsk"},
             {"дотация", "dotatsiya"},
             {"доцент", "dotsent"},
             {"жиу-жицу", "jiu-jitsu"},
@@ -296,7 +340,7 @@ public class WordsLibrary implements Translate {
             {"рецептор", "retseptor"},
             {"рецидивист", "retsidivist"},
             {"рицар", "ritsar"},
-            {"Сан-франциско", "San-fransisko"},
+            {"сан-франциско", "san-fransisko"},
             {"седиментация", "sedimentatsiya"},
             {"секреция", "sekretsiya"},
             {"секция", "seksiya"},
@@ -378,10 +422,10 @@ public class WordsLibrary implements Translate {
             {"эссенция", "essensiya"},
             {"юрисдикция", "yurisdiksiya"},
             {"юриспруденция", "yurisprudensiya"},
-            {"Янцзи", "Yanszi"},
-            {"Сентябрь", "Sentabr"},
-            {"Октябрь", "Oktabr"},
-            {"Бюджет", "Budjet"},
+            {"янцзи", "yanszi"},
+            {"сентябрь", "Sentabr"},
+            {"октябрь", "oktabr"},
+            {"бюджет", "budjet"},
             {"меценат", "mesenat"},
             {"нуқтаи назар", "nuqtayi nazar"},
             {"биолюминесценция", "biolyuminessensiya"},
@@ -441,6 +485,7 @@ public class WordsLibrary implements Translate {
             {"включател", "vklyuchatel"},
             {"холецистит", "xoletsistit"},
             {"адъюнктура", "adyunktura"},
+            {"адъюнкт", "adyunkt"},
             {"большевизм", "bolshevizm"},
             {"броненосец", "bronenoses"},
             {"черепица", "cherepitsa"},
@@ -1041,28 +1086,16 @@ public class WordsLibrary implements Translate {
             {"пенсия", "pensiya"},
             {"версия", "versiya"},
             {"жинсият", "jinsiyat"},
-            {"Сирка", "Sirka"},
-            {"Сингари", "Singari"},
-            {"Принцип", "Prinsip"},
-            {"Деци", "Detsi"},
-            {"Цикл", "Sikl"},
-            {"Вице", "Vitse"},
-            {"Девальвация", "Devalvatsiya"},
-            {"Вальвация", "Valvatsiya"},
-            {"Пенсия", "Pensiya"},
-            {"Версия", "Versiya"},
-            {"Жинсият", "Jinsiyat"},
-            {"СИРКА", "SIRKA"},
-            {"СИНГАРИ", "SINGARI"},
-            {"ПРИНЦИП", "PRINSIP"},
-            {"ДЕЦИ", "DETSI"},
-            {"ЦИКЛ", "SIKL"},
-            {"ВИЦЕ", "VITSE"},
-            {"ДЕВАЛЬВАЦИЯ", "DEVALVATSIYA"},
-            {"ВАЛЬВАЦИЯ", "VALVATSIYA"},
-            {"ПЕНСИЯ", "PENSIYA"},
-            {"ВЕРСИЯ", "VERSIYA"},
-            {"ЖИНСИЯТ", "JINSIYAT"}
+            {"сирка", "sirka"},
+            {"сингари", "singari"},
+            {"принцип", "prinsp"},
+            {"деци", "detsi"},
+            {"цикл", "sikl"},
+            {"вице", "Vitse"},
+            {"девальвация", "devalvatsiya"},
+            {"вальвация", "valvatsiya"},
+            {"версия", "versiya"},
+            {"жинсият", "jinsiyat"}
 
     };
 
@@ -1097,6 +1130,11 @@ public class WordsLibrary implements Translate {
         WordsLibrary.latinCyrillicWords = Map.copyOf(latinCyrillicWords);
     }
 
+    private enum LETTER_CASES {
+        CAMEL_CASE,
+        UPPER_CASE,
+        LOWER_CASE
+    }
 }
 
 

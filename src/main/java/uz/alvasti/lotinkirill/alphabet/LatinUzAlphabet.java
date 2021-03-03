@@ -11,13 +11,13 @@ public class LatinUzAlphabet implements Alphabet {
     protected final boolean[] onlyLettersArr = new boolean[65536];
 
     /*
-     8216 -  o' ning belgisi, 6 o'ning
-     8217 - tutuq belgisi,9 tutuq belgisi
+     699 -  o' ning belgisi, 6 o'ning
+     700 - tutuq belgisi,9 tutuq belgisi
      */
                                                 //0                              1                    2                  3             4     5     6     7     8     9
-    private final String[] combinedLetters = {"O" + ((char)(8216)), "o" + ((char)(8216)), "G" + ((char)(8216)), "g" + ((char)(8216)), "Sh", "sh", "Ch", "ch", "Ng", "ng"};
+    private final String[] combinedLetters = {"O" + ((char)(699)), "o" + ((char)(699)), "G" + ((char)(699)), "g" + ((char)(699)), "Sh", "sh", "Ch", "ch", "Ng", "ng"};
 
-    private final Character[] characters = {8217, 45, 8216};
+    private final Character[] characters = {700, 45, 699};
 
     private final List<Character> allPossibleChars;
 
