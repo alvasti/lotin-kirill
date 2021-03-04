@@ -32,7 +32,7 @@ public class WordsLibrary implements Translate {
 
     /**
      * camelCase, PascalCase yaxshi ishlamasligi mumkin
-     * only lower case, ONLY UPPER CASE, Capital Case
+     * working correctly lower case, UPPER CASE, Capital Case
      */
     private String translateWithHashMap(Map<Integer, String> wordsCompabilityMap, String word) {
 

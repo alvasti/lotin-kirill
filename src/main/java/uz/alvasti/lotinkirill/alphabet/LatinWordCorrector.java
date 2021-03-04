@@ -69,8 +69,8 @@ public class LatinWordCorrector {
      */
     public String correctTutuqAndO_Q_(String word) {
 
-        word = correctO_Q_(word);
         word = correctTutuq(word);
+        word = correctO_Q_(word);
 
         return word;
     }

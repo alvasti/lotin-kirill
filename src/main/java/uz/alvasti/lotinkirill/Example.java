@@ -16,16 +16,8 @@ public class Example {
 //        String testUpper = "ЪАаБбДsdsdsъwewewe123''';3[12 6 sentyabr ";
 //        System.out.println(testUpper.toUpperCase());
 
-        char[] a = {'a','w','e','t','u'};
-        System.out.println(String.valueOf(a,1, a.length-1));
-        System.out.println("asdf".substring(0, "asdf".length()));
-        System.out.println((char)(8217));
-        System.out.println((char)(45));
-        System.out.println((int)('ʼ'));
-        System.out.println(((int)('ʻ')));
-        System.out.println(((int)('ʼ')));
-        String text = "mo'jaz A'ZAMJON E'LON  sa'as6 sentyabr SYOM";
-        String text1 = "аЪзамжондэк эЪлон 6 центябр ўъжаз АДЪЮНКТ СЪЁМ ";
+        String text = "E'LON E'lon e'lon emma'as";
+        String text1 = "аъзамжондэк эЪлон 6 центябр ўъжаз АДЪЮНКТ СЪЁМ ";
         TextTranslator textTranslator = new TextTranslator();
 
         System.out.println(textTranslator.translateAuto(text));
