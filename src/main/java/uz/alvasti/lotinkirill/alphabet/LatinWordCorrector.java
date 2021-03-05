@@ -75,7 +75,7 @@ public class LatinWordCorrector {
         return word;
     }
 
-    private String correctO_Q_(String word) {
+    public String correctO_Q_(String word) {
 
         for (Character tutuqAndO_g_variant : tutuqAndO_G_Variants) {
             word = word.replaceAll("o" + tutuqAndO_g_variant, "o" + o_g_);

@@ -16,10 +16,12 @@ public class Example {
 //        String testUpper = "ЪАаБбДsdsdsъwewewe123''';3[12 6 sentyabr ";
 //        System.out.println(testUpper.toUpperCase());
 
-        String text = "E'LON E'lon e'lon emma'as";
+
+        String text = "хаvоrаnggаzbo`lib   E'LON ASS"+((char)(700))+"SD ";//""E'LON E'lon e'lon emma'as";
         String text1 = "аъзамжондэк эЪлон 6 центябр ўъжаз АДЪЮНКТ СЪЁМ ";
         TextTranslator textTranslator = new TextTranslator();
 
+        textTranslator.translateAuto("СЪЁМ");
         System.out.println(textTranslator.translateAuto(text));
         System.out.println();
         System.out.println(textTranslator.translateAuto(text1));

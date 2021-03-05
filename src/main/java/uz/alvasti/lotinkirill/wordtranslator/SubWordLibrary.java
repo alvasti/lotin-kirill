@@ -1,6 +1,13 @@
 package uz.alvasti.lotinkirill.wordtranslator;
 
+import java.util.Arrays;
+
 public class SubWordLibrary implements Translate{
+
+    public SubWordLibrary() {
+        Arrays.sort(subWordsCyrillicInitial, (strings, t1) -> t1[0].length()- strings[0].length());
+        Arrays.sort(subWordsLatinInitial, (strings, t1) -> t1[0].length()- strings[0].length());
+    }
 
     @Override
     public String translateToLatin(String word) {
