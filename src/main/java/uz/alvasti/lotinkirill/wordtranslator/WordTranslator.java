@@ -11,12 +11,14 @@ public class WordTranslator implements Translate {
     private final SubWordLibrary subWordLibrary;
     private final LettersCompatibility lettersCompatibility;
     private final LatinWordCorrector latinWordCorrector;
+    private final Grammar grammar;
 
     public WordTranslator() {
         this.wordsLibrary = new WordsLibrary();
         this.subWordLibrary = new SubWordLibrary();
         this.lettersCompatibility = new LettersCompatibility();
         this.latinWordCorrector = new LatinWordCorrector();
+        this.grammar = new Grammar();
     }
 
     /**
@@ -67,8 +69,8 @@ public class WordTranslator implements Translate {
 
             String letter = "" + wordChars[i];
             if (i < len - 1) {
-                var reversedLetter = lettersCompatibility.toCyrillic( letter + wordChars[i + 1]);
-                if(reversedLetter != null && !reversedLetter.equals(letter)){
+                var reversedLetter = lettersCompatibility.toCyrillic(letter + wordChars[i + 1]);
+                if (reversedLetter != null && !reversedLetter.equals(letter)) {
                     i++;
                     newWord.append(reversedLetter);
                     continue;
@@ -76,6 +78,13 @@ public class WordTranslator implements Translate {
             }
 
             var reversedLetter = lettersCompatibility.toCyrillic(letter);
+
+            if (i > 0 && reversedLetter != null) {
+                reversedLetter = grammar.cyrillicE3wordsCorrector(
+                        newWord.charAt(newWord.length() - 1),
+                        reversedLetter);
+            }
+
             newWord.append(Objects.requireNonNullElse(reversedLetter, letter));
 
         }

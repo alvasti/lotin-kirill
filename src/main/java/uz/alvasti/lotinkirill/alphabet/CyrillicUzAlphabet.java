@@ -6,9 +6,13 @@ import java.util.List;
 
 public class CyrillicUzAlphabet implements Alphabet {
 
-    private final Character[] onlyLetters = {'А','а','Б','б','Д','д','Э','э','Е','е','Ф','ф','Г','г','Ҳ','ҳ','И','и','Ж','ж','К','к','Л','л','М','м','Н','н','О','о','П','п','Қ','қ','Р','р','С','с','Т','т','У','у','В','в','Х','х','Й','й','З','з','Ў','ў','Ғ','ғ','Ш','ш','Ч','ч','Ц','ц', 'Ё', 'ё', 'Ю', 'ю', 'Я', 'я'};
+    private final Character[] onlyLetters = {'А', 'а', 'Б', 'б', 'Д', 'д', 'Э', 'э', 'Е', 'е', 'Ф', 'ф', 'Г', 'г', 'Ҳ', 'ҳ', 'И', 'и', 'Ж', 'ж', 'К', 'к', 'Л', 'л', 'М', 'м', 'Н', 'н', 'О', 'о', 'П', 'п', 'Қ', 'қ', 'Р', 'р', 'С', 'с', 'Т', 'т', 'У', 'у', 'В', 'в', 'Х', 'х', 'Й', 'й', 'З', 'з', 'Ў', 'ў', 'Ғ', 'ғ', 'Ш', 'ш', 'Ч', 'ч', 'Ц', 'ц', 'Ё', 'ё', 'Ю', 'ю', 'Я', 'я'};
+
+    private final Character[] onlyVowelLetters = {'А', 'а', 'Э', 'э', 'Е', 'е', 'И', 'и', 'О', 'о', 'У', 'у', 'Ў', 'ў', 'Ё', 'ё', 'Ю', 'ю', 'Я', 'я'};
 
     private final boolean[] onlyLettersArr = new boolean[65536];
+
+    private final boolean[] onlyVowelLettersArr = new boolean[65536];
 
     /*
      Нг нг
@@ -16,7 +20,7 @@ public class CyrillicUzAlphabet implements Alphabet {
      */
     private final String[] combinedLetters = {};
 
-    private final Character[] characters = {'ъ' , 'Ъ', '-' };
+    private final Character[] characters = {'ъ', 'Ъ', '-'};
 
     private final List<Character> allPossibleChars;
 
@@ -26,6 +30,10 @@ public class CyrillicUzAlphabet implements Alphabet {
 
         for (Character onlyLetter : onlyLetters) {
             onlyLettersArr[onlyLetter] = true;
+        }
+
+        for (Character vowelLetter : onlyVowelLetters) {
+            onlyVowelLettersArr[vowelLetter] = true;
         }
 
         List<Character> list = new ArrayList<>();
@@ -38,7 +46,7 @@ public class CyrillicUzAlphabet implements Alphabet {
         }
         this.allPossibleChars = List.copyOf(list);
         for (Character allPossibleChar : this.allPossibleChars) {
-            allPossibleCharsArr[allPossibleChar]=true;
+            allPossibleCharsArr[allPossibleChar] = true;
         }
     }
 
@@ -98,6 +106,18 @@ public class CyrillicUzAlphabet implements Alphabet {
 
     public static boolean[] getAllPossibleCharsArr() {
         return allPossibleCharsArr;
+    }
+
+    public Character[] getOnlyVowelLetters() {
+        return onlyVowelLetters;
+    }
+
+    public boolean[] getOnlyLettersArr() {
+        return onlyLettersArr;
+    }
+
+    public boolean[] getOnlyVowelLettersArr() {
+        return onlyVowelLettersArr;
     }
 }
 /*
