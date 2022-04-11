@@ -20,10 +20,16 @@ public class Example {
 
         System.out.println(
                 textTranslator.translateAuto(
-                        "echki mening eskimos kjoemas jhgyae ,mnie eeee skuejkjds"
+                        "echki mening eskimos kjoemas jhgyae ,mnie eeee skuejkjds" +
+                                "Yekatiringburg"
                 )
         );
 
+        System.out.println(
+                textTranslator.translateAuto(
+                        "Екатиринбур"
+                )
+        );
 
         String text = "sentabr";//"хаvоrаnggаzbo`lib   E'LON ASS"+((char)(700))+"SD ";//""E'LON E'lon e'lon emma'as";
         String text1 = "аъзамжондэк эЪлон 6 центябр ўъжаз АДЪЮНКТ СЪЁМ ";

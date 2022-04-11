@@ -59,6 +59,11 @@ public class WordTranslator implements Translate {
     @Override
     public String translateToCyrillic(String word) {
 
+        boolean isCapitalLetter = isCapitalLetter(word);
+        if (isCapitalLetter) {
+            word = word.toLowerCase();
+        }
+
         word = this.latinWordCorrector.correctTutuqAndO_Q_(word);
         word = this.wordsLibrary.translateToCyrillic(word);
         word = this.subWordLibrary.translateToCyrillic(word);
@@ -88,6 +93,27 @@ public class WordTranslator implements Translate {
             newWord.append(Objects.requireNonNullElse(reversedLetter, letter));
 
         }
-        return newWord.toString();
+
+        return isCapitalLetter ? toCapitalLetter(newWord.toString()) : newWord.toString();
+    }
+
+    private boolean isCapitalLetter(String word) {
+
+        if (word == null || word.isEmpty()) {
+            return false;
+        }
+
+        String begin = word.charAt(0) + "";
+        String end = word.substring(1);
+        return begin.equals(begin.toUpperCase()) && end.equals(end.toLowerCase());
+    }
+
+    private String toCapitalLetter(String word) {
+
+        if (word == null || word.isEmpty()) {
+            return word;
+        }
+
+        return (word.charAt(0) + "").toUpperCase() + word.substring(1);
     }
 }
