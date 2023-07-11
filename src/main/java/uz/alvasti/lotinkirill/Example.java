@@ -3,9 +3,12 @@ package uz.alvasti.lotinkirill;
 import uz.alvasti.lotinkirill.texttranslator.TextTranslator;
 import uz.alvasti.lotinkirill.wordtranslator.Word;
 import uz.alvasti.lotinkirill.wordtranslator.WordTranslator;
+import uz.alvasti.lotinkirill.wordtranslator.WordsLibrary;
 
-import java.io.*;
-import java.net.URL;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 
 public class Example {
@@ -18,30 +21,65 @@ public class Example {
 
         TextTranslator textTranslator = new TextTranslator();
 
-        System.out.println(
-                textTranslator.translateAuto(
-                        "echki mening eskimos kjoemas jhgyae ,mnie eeee skuejkjds" +
-                                "Yekatiringburg"
-                )
-        );
+        var ss = "dekabr gantel mas’uliyatsizlik masʼul mas’uliyatliliklarining";
 
         System.out.println(
                 textTranslator.translateAuto(
-                        "Екатиринбур"
+                        ss
                 )
         );
 
-        String text = "sentabr";//"хаvоrаnggаzbo`lib   E'LON ASS"+((char)(700))+"SD ";//""E'LON E'lon e'lon emma'as";
-        String text1 = "аъзамжондэк эЪлон 6 центябр ўъжаз АДЪЮНКТ СЪЁМ ";
+//        var arr = WordsLibrary.wordsInitial;
+//        for (String[] ar : arr) {
+//            for (String[] ar1 : arr) {
+//                //                {'ъ', 'Ъ', '-', 'ь', 'Ь'}
+//                if (ar[0].equalsIgnoreCase(ar1[0] + "ь")) {
+//                    System.out.println(ar1[0]);
+//                    break;
+//                }
+//            }
+//        }
+
+//        String s1 = new String("asd");
+//        System.out.println("asd".hashCode());
+//        System.out.println(s1.hashCode());
+//        for (int i = 0; i < ss.length(); i++) {
+//            int o = ss.charAt(i);
+//            System.out.print(ss.charAt(i) + " " + o + "  ");
+//        }
+//        System.out.println();
+
+        System.out.println(
+                textTranslator.translateAuto(
+                        "декабрь масъул масъулиятлиликларининг"
+                )
+        );
+        int k = '’', l = 'ʼ', j = '’';
+        char cc = 699;
+        System.out.println("’ʼ");
+        System.out.println(k);
+        System.out.println(l);
+        System.out.println(j);
+        System.out.println(cc);
+
+
+//        System.out.println(
+//                textTranslator.translateAuto(
+//                        "Екатиринбур"
+//                )
+//        );
+
+//        String text = "sentabr";//"хаvоrаnggаzbo`lib   E'LON ASS"+((char)(700))+"SD ";//""E'LON E'lon e'lon emma'as";
+//        String text1 = "аъзамжондэк эЪлон 6 центябр ўъжаз АДЪЮНКТ СЪЁМ ";
 
 //        textTranslator.translateAuto("СЪЁМ");
-        System.out.println(textTranslator.translateAuto(text));
-        System.out.println();
-        System.out.println(textTranslator.translateAuto(text1));
+//        System.out.println(textTranslator.translateAuto(text));
+//        System.out.println();
+//        System.out.println(textTranslator.translateAuto(text1));
 
     }
 
-    public static void testing(){
+    public static void testing() {
         File in = new File("testin.txt");
 
         File out = new File("testout.txt");
@@ -49,7 +87,7 @@ public class Example {
         WordTranslator wordTranslator = new WordTranslator();
 
         try (BufferedReader br = new BufferedReader(new FileReader(in));
-             PrintWriter writer = new PrintWriter(out, StandardCharsets.UTF_8)){
+             PrintWriter writer = new PrintWriter(out, StandardCharsets.UTF_8)) {
 
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();

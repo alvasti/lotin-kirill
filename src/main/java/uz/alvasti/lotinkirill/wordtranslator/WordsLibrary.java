@@ -6,8 +6,8 @@ import java.util.*;
 
 public class WordsLibrary implements Translate {
 
-    private static Map<Integer, String> cyrillicLatinWords;
-    private static Map<Integer, String> latinCyrillicWords;
+    private static Map<Integer, List<String>> cyrillicLatinWords;
+    private static Map<Integer, List<String>> latinCyrillicWords;
 
     public boolean checkLatin(String word) {
 
@@ -34,7 +34,7 @@ public class WordsLibrary implements Translate {
      * camelCase, PascalCase yaxshi ishlamasligi mumkin
      * working correctly lower case, UPPER CASE, Capital Case
      */
-    private String translateWithHashMap(Map<Integer, String> wordsCompabilityMap, String word) {
+    private String translateWithHashMap(Map<Integer, List<String>> wordsCompabilityMap, String word) {
 
         LETTER_CASES wordCase = null;
         if (word.toUpperCase().equals(word)) {
@@ -68,15 +68,15 @@ public class WordsLibrary implements Translate {
 
             for (int i = 0; i < len && !isHave; i++) {
 
-                for (int j = i + 1; j <= len && !isHave; j++) {
+                for (int j = len; j >= i + 1 && !isHave; j--) {
 
                     String s = String.valueOf(Arrays.copyOfRange(wordsChar, i, j));
-                    s = wordsCompabilityMap.get(s.hashCode());
+                    var list = wordsCompabilityMap.get(s.hashCode());
 
-                    if (s != null) {
+                    if (list != null) {
                         wordsChar = CustomArrayUtil.concatCharArrays(
                                 Arrays.copyOfRange(wordsChar, 0, i),
-                                s.toCharArray(),
+                                list.get(0).toCharArray(),
                                 Arrays.copyOfRange(wordsChar, j, len));
                         isHave = true;
                     }
@@ -812,7 +812,7 @@ public class WordsLibrary implements Translate {
             {"чизел", "chizel"},
             {"дальтон", "dalton"},
             {"декабрь", "dekabr"},
-            {"декабр", "dekabr"},
+//            {"декабр", "dekabr"},
             {"дельфин", "delfin"},
             {"факульт", "fakult"},
             {"февраль", "fevral"},
@@ -1122,12 +1122,19 @@ public class WordsLibrary implements Translate {
             WordsLibrary.words[wordsInitialLength++] = word;
         }
 
-        var cyrillicLatinWords = new HashMap<Integer, String>();
-        var latinCyrillicWords = new HashMap<Integer, String>();
+        var cyrillicLatinWords = new HashMap<Integer, List<String>>();
+        var latinCyrillicWords = new HashMap<Integer, List<String>>();
         for (String[] word : WordsLibrary.words) {
-            cyrillicLatinWords.put(word[0].hashCode(), word[1]);
-            latinCyrillicWords.put(word[1].hashCode(), word[0]);
+            int hash0 = word[0].hashCode();
+            int hash1 = word[1].hashCode();
+            cyrillicLatinWords.computeIfAbsent(hash0, k -> new ArrayList<>());
+            latinCyrillicWords.computeIfAbsent(hash1, k -> new ArrayList<>());
+            cyrillicLatinWords.get(hash0).add(word[1]);
+            latinCyrillicWords.get(hash1).add(word[0]);
         }
+
+        cyrillicLatinWords.forEach((key, value) -> value.sort(Comparator.comparing(String::length).reversed()));
+        latinCyrillicWords.forEach((key, value) -> value.sort(Comparator.comparing(String::length).reversed()));
         WordsLibrary.cyrillicLatinWords = Map.copyOf(cyrillicLatinWords);
         WordsLibrary.latinCyrillicWords = Map.copyOf(latinCyrillicWords);
     }

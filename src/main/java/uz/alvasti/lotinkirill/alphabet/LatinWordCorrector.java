@@ -96,9 +96,6 @@ public class LatinWordCorrector {
 
             StringBuilder newWord = new StringBuilder();
 
-            if (tutuqSignWord.equals("EʼLON")) {
-                int in = 0;
-            }
             int tutuqWordLen = tutuqSignWord.length();
 
             int compatibilityCount = 0;
@@ -106,7 +103,7 @@ public class LatinWordCorrector {
 
             for (int i = 0; i < tempWordLen; i++) {
                 Character wordsChar = tempWord[i];
-                char tutuqWordsChar = Character.MAX_VALUE;//xar xillik uchun
+                Character tutuqWordsChar = Character.MAX_VALUE;//xar xillik uchun
                 if (i < tutuqWordLen) {
                     tutuqWordsChar = tutuqSignWord.charAt(i);
                     if (wordsChar < 150 && tutuqWordsChar < 150) {
@@ -119,10 +116,10 @@ public class LatinWordCorrector {
 
                 }
 
-                if (tutuqWordsChar == tutuq) {
+                if (tutuqWordsChar.equals(tutuq)) {
                     boolean reverse = false;
                     for (Character character : tutuqAndO_G_Variants) {
-                        reverse = reverse || character == wordsChar;
+                        reverse = reverse || character.equals(wordsChar);
                     }
                     reverse = reverse && !this.latinUzAlphabet.onlyLettersArr[wordsChar];
                     if (reverse) {
@@ -130,10 +127,10 @@ public class LatinWordCorrector {
                         wordsChar = tutuq;
                     }
                 }
-                if (tutuqWordsChar == o_g_) {
+                if (tutuqWordsChar.equals(o_g_)) {
                     boolean isO_g_ = false;
                     for (Character character : tutuqAndO_G_Variants) {
-                        isO_g_ = isO_g_ || character == wordsChar;
+                        isO_g_ = isO_g_ || character.equals(wordsChar);
                     }
                     isO_g_ = isO_g_ && !this.latinUzAlphabet.onlyLettersArr[wordsChar];
                     if (isO_g_) {

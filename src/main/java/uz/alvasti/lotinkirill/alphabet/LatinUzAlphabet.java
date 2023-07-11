@@ -6,7 +6,7 @@ import java.util.List;
 
 public class LatinUzAlphabet implements Alphabet {
 
-    private final Character[] onlyLetters = {'A', 'a', 'B', 'b', 'D', 'd', 'E', 'e', 'F', 'f', 'G', 'g', 'H', 'h', 'I', 'i', 'J', 'j', 'K', 'k', 'L', 'l', 'M', 'm', 'N', 'n', 'O', 'o', 'P', 'p', 'Q', 'q', 'R', 'r', 'S', 's', 'T', 't', 'U', 'u', 'V', 'v', 'X', 'x', 'Y', 'y', 'Z', 'z'};
+    private final Character[] onlyLetters = {'A', 'a', 'B', 'b', 'D', 'd', 'E', 'e', 'F', 'f', 'G', 'g', 'H', 'h', 'I', 'i', 'J', 'j', 'K', 'k', 'L', 'l', 'M', 'm', 'N', 'n', 'O', 'o', 'P', 'p', 'Q', 'q', 'R', 'r', 'S', 's', 'T', 't', 'U', 'u', 'V', 'v', 'X', 'x', 'Y', 'y', 'Z', 'z', '\u0000'};
 
     protected final boolean[] onlyLettersArr = new boolean[65536];
 
@@ -66,13 +66,13 @@ public class LatinUzAlphabet implements Alphabet {
         if (onlyLettersArr[c]) return true;
 
         for (String combinedLetter : combinedLetters) {
-            for (char c1 : combinedLetter.toCharArray()) {
-                if (c1 == c) return true;
+            for (Character c1 : combinedLetter.toCharArray()) {
+                if (c1.equals(c)) return true;
             }
         }
 
         for (Character character : characters) {
-            if (character == c) return true;
+            if (character.equals(c)) return true;
         }
 
         return false;

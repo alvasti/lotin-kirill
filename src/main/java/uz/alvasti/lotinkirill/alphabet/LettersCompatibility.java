@@ -83,10 +83,12 @@ public class LettersCompatibility {
         //Е kirill
         l = 6;
         c = 8;
-        lh.put(asString(lat[44] + "" + lat[l]), asString(cyr[c]));
+        lh.put(asString(//lat[44] + "" +
+                lat[l]), asString(cyr[c]));
         l = 7;
         c = 9;
-        lh.put(asString(lat[45] + "" + lat[l]), asString(cyr[c]));
+        lh.put(asString(//lat[45] + "" +
+                lat[l]), asString(cyr[c]));
 
         //F
         l = 8;
@@ -269,6 +271,12 @@ public class LettersCompatibility {
         l1 = 34;
         c = 59;
         lh.put(asString(lat[l]) + asString(lat[l1]), asString(cyr[c]));
+
+        //ь  Ь
+        c = 3;
+        lh.put("", asString(cyrChar[c]));
+        c = 4;
+        lh.put("", asString(cyrChar[c]));
 
         //Ё
         l = 44;

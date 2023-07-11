@@ -20,7 +20,7 @@ public class CyrillicUzAlphabet implements Alphabet {
      */
     private final String[] combinedLetters = {};
 
-    private final Character[] characters = {'ъ', 'Ъ', '-'};
+    private final Character[] characters = {'ъ', 'Ъ', '-', 'ь', 'Ь'};
 
     private final List<Character> allPossibleChars;
 
@@ -74,13 +74,13 @@ public class CyrillicUzAlphabet implements Alphabet {
         if (onlyLettersArr[c]) return true;
 
         for (String combinedLetter : combinedLetters) {
-            for (char c1 : combinedLetter.toCharArray()) {
-                if (c1 == c) return true;
+            for (Character c1 : combinedLetter.toCharArray()) {
+                if (c1.equals(c)) return true;
             }
         }
 
         for (Character character : characters) {
-            if (character == c) return true;
+            if (character.equals(c)) return true;
         }
 
         return false;
