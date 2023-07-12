@@ -20,7 +20,7 @@ public class CyrillicUzAlphabet implements Alphabet {
      */
     private final String[] combinedLetters = {};
 
-    private final Character[] characters = {'ъ', 'Ъ', '-', 'ь', 'Ь'};
+    private final Character[] characters = {'ъ', 'Ъ', 'ь', 'Ь'};
 
     private final List<Character> allPossibleChars;
 

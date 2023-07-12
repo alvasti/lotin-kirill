@@ -12,6 +12,7 @@ public class LettersCompatibility {
     private final Character[] cyrChar;
 
     private final HashMap<String, String> lh = new HashMap<>();
+
     private final HashMap<String, String> ch = new HashMap<>();
 
     private final CyrillicUzAlphabet cyrillicUzAlphabet;
@@ -69,15 +70,6 @@ public class LettersCompatibility {
         lh.put(asString(lat[l]), asString(cyr[c]));
         l = 5;
         c = 5;
-        lh.put(asString(lat[l]), asString(cyr[c]));
-
-        //E uzb
-        l = 6;
-        c = 6;
-
-        lh.put(asString(lat[l]), asString(cyr[c]));
-        l = 7;
-        c = 7;
         lh.put(asString(lat[l]), asString(cyr[c]));
 
         //Е kirill
@@ -273,9 +265,9 @@ public class LettersCompatibility {
         lh.put(asString(lat[l]) + asString(lat[l1]), asString(cyr[c]));
 
         //ь  Ь
-        c = 3;
+        c = 2;
         lh.put("", asString(cyrChar[c]));
-        c = 4;
+        c = 3;
         lh.put("", asString(cyrChar[c]));
 
         //Ё
@@ -313,7 +305,15 @@ public class LettersCompatibility {
             ch.put(entry.getValue(), entry.getKey());
         }
 
-        int a = 1;
+        //Э cry
+        l = 6;
+        c = 6;
+
+        ch.put(asString(cyr[c]), asString(lat[l]));
+        l = 7;
+        c = 7;
+        ch.put(asString(cyr[c]), asString(lat[l]));
+
     }
 
 
@@ -343,6 +343,10 @@ public class LettersCompatibility {
      */
     public String toCyrillic(String letter) {
         return lh.get(letter);
+    }
+
+    public boolean[] getOnlyLettersArrCyrillic() {
+        return cyrillicUzAlphabet.getOnlyLettersArr();
     }
 
 }

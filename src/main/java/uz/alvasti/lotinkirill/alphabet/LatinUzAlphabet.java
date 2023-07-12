@@ -17,7 +17,7 @@ public class LatinUzAlphabet implements Alphabet {
                                                 //0                              1                    2                  3             4     5     6     7     8     9
     private final String[] combinedLetters = {"O" + ((char)(699)), "o" + ((char)(699)), "G" + ((char)(699)), "g" + ((char)(699)), "Sh", "sh", "Ch", "ch", "Ng", "ng"};
 
-    private final Character[] characters = {700, 45, 699};
+    private final Character[] characters = {700, 699};
 
     private final List<Character> allPossibleChars;
 

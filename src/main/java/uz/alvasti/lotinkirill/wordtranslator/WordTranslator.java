@@ -94,6 +94,25 @@ public class WordTranslator implements Translate {
 
         }
 
+
+        //'Э tekshirish
+        int firstCh = -1;
+        for (int i = 0; i < newWord.length(); i++) {
+            if (this.lettersCompatibility.getOnlyLettersArrCyrillic()[newWord.charAt(i)]) {
+                firstCh = i;
+                break;
+            }
+        }
+
+        if (firstCh > -1) {
+            if (newWord.charAt(firstCh) == 'Е') {
+                newWord.setCharAt(firstCh, 'Э');
+            }
+            if (newWord.charAt(firstCh) == 'е') {
+                newWord.setCharAt(firstCh, 'э');
+            }
+        }
+
         return isCapitalLetter ? toCapitalLetter(newWord.toString()) : newWord.toString();
     }
 
@@ -103,7 +122,7 @@ public class WordTranslator implements Translate {
             return false;
         }
 
-        String begin = word.charAt(0) + "";
+        String begin = String.valueOf(word.charAt(0));
         String end = word.substring(1);
         return begin.equals(begin.toUpperCase()) && end.equals(end.toLowerCase());
     }
@@ -114,6 +133,6 @@ public class WordTranslator implements Translate {
             return word;
         }
 
-        return (word.charAt(0) + "").toUpperCase() + word.substring(1);
+        return (String.valueOf(word.charAt(0))).toUpperCase() + word.substring(1);
     }
 }

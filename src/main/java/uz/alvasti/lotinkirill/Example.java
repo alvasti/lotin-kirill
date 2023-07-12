@@ -21,13 +21,33 @@ public class Example {
 
         TextTranslator textTranslator = new TextTranslator();
 
-        var ss = "dekabr gantel mas’uliyatsizlik masʼul mas’uliyatliliklarining";
+        var ss = "эттирмоқ";
+        var ss1 = "salom-palom-a'lo";
+        var ss2 = "ettirmoq";
 
         System.out.println(
                 textTranslator.translateAuto(
                         ss
                 )
         );
+
+        System.out.println(
+                textTranslator.translateAuto(
+                        ss1
+                )
+        );
+
+        System.out.println(
+                textTranslator.translateAuto(
+                        ss2
+                )
+        );
+
+
+        System.out.println(((char)(700)));
+
+//        Э 1069
+//        э 1101
 
 //        var arr = WordsLibrary.wordsInitial;
 //        for (String[] ar : arr) {
@@ -49,18 +69,18 @@ public class Example {
 //        }
 //        System.out.println();
 
-        System.out.println(
-                textTranslator.translateAuto(
-                        "декабрь масъул масъулиятлиликларининг"
-                )
-        );
-        int k = '’', l = 'ʼ', j = '’';
-        char cc = 699;
-        System.out.println("’ʼ");
-        System.out.println(k);
-        System.out.println(l);
-        System.out.println(j);
-        System.out.println(cc);
+//        System.out.println(
+//                textTranslator.translateAuto(
+//                        "декабрь масъул масъулиятлиликларининг"
+//                )
+//        );
+//        int k = '’', l = 'ʼ', j = '’';
+//        char cc = 699;
+//        System.out.println("’ʼ");
+//        System.out.println(k);
+//        System.out.println(l);
+//        System.out.println(j);
+//        System.out.println(cc);
 
 
 //        System.out.println(
