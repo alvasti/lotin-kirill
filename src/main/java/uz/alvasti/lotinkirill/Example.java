@@ -22,8 +22,12 @@ public class Example {
         TextTranslator textTranslator = new TextTranslator();
 
         var ss = "эттирмоқ";
-        var ss1 = "salom-palom-a'lo";
-        var ss2 = "ettirmoq";
+        var ss1 = "salom-palom-a'lo yo'qligimda";
+        var ss2 = "ettirmoq";//yoʻqligimda
+
+        char c = 699;
+
+        System.out.println(c);
 
         System.out.println(
                 textTranslator.translateAuto(
