@@ -6,8 +6,8 @@ import java.util.*;
 
 public class WordsLibrary implements Translate {
 
-    private static Map<Integer, List<String>> cyrillicLatinWords;
-    private static Map<Integer, List<String>> latinCyrillicWords;
+    private static final Map<Integer, List<String>> cyrillicLatinWords = new HashMap<>();
+    private static final Map<Integer, List<String>> latinCyrillicWords = new HashMap<>();
 
     public boolean checkLatin(String word) {
 
@@ -34,7 +34,7 @@ public class WordsLibrary implements Translate {
      * camelCase, PascalCase yaxshi ishlamasligi mumkin
      * working correctly lower case, UPPER CASE, Capital Case
      */
-    private String translateWithHashMap(Map<Integer, List<String>> wordsCompabilityMap, String word) {
+    private String translateWithHashMap(final Map<Integer, List<String>> wordsCompabilityMap, String word) {
 
         LETTER_CASES wordCase = null;
         if (word.toUpperCase().equals(word)) {
@@ -1135,8 +1135,8 @@ public class WordsLibrary implements Translate {
 
         cyrillicLatinWords.forEach((key, value) -> value.sort(Comparator.comparing(String::length).reversed()));
         latinCyrillicWords.forEach((key, value) -> value.sort(Comparator.comparing(String::length).reversed()));
-        WordsLibrary.cyrillicLatinWords = Map.copyOf(cyrillicLatinWords);
-        WordsLibrary.latinCyrillicWords = Map.copyOf(latinCyrillicWords);
+        WordsLibrary.cyrillicLatinWords.putAll(Map.copyOf(cyrillicLatinWords));
+        WordsLibrary.latinCyrillicWords.putAll(Map.copyOf(latinCyrillicWords));
     }
 
     private enum LETTER_CASES {

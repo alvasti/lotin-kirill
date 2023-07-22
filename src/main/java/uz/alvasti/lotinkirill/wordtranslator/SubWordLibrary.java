@@ -1,37 +1,38 @@
 package uz.alvasti.lotinkirill.wordtranslator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Pattern;
 
-public class SubWordLibrary implements Translate{
+public class SubWordLibrary implements Translate {
 
     public SubWordLibrary() {
-        Arrays.sort(subWordsCyrillicInitial, (strings, t1) -> t1[0].length()- strings[0].length());
-        Arrays.sort(subWordsLatinInitial, (strings, t1) -> t1[0].length()- strings[0].length());
     }
 
     @Override
     public String translateToLatin(String word) {
 
 
-        for (String[] strings : subWordsCyrillicInitial) {
-            String cyrillic = strings[0];
-            String latin = strings[1];
-            word = word.replaceAll(cyrillic, latin);
+        for (var strings : subWordsCyrillicInitialPattern) {
+            var cyrillic = strings.getPattern();
+            String latin = strings.getWord();
+            word = word.replaceAll(cyrillic.pattern(), latin);
         }
         return word;
     }
 
     @Override
     public String translateToCyrillic(String word) {
-        for (String[] strings : subWordsLatinInitial) {
-            String latin = strings[0];
-            String cyrillic = strings[1];
-            word = word.replaceAll(latin, cyrillic);
+        for (var strings : subWordsLatinInitialPattern) {
+            var latin = strings.getPattern();
+            String cyrillic = strings.getWord();
+            word = word.replaceAll(latin.pattern(), cyrillic);
         }
         return word;
     }
 
-    private final String[][] subWordsLatinInitial = {
+    private static final String[][] subWordsLatinInitial = {
             {"oʻjaz", "ўъжаз"},
             {"OʻJAZ", "ЎЪЖАЗ"},
             {"oʻjiza", "ўъжиза"},
@@ -59,9 +60,9 @@ public class SubWordLibrary implements Translate{
             {"ye", "е"},
             {"Ye", "Е"},
             {"YE", "Е"},
-            {"sh","ш"},
-            {"SH","Ш"},
-            {"Sh","Ш"},
+            {"sh", "ш"},
+            {"SH", "Ш"},
+            {"Sh", "Ш"},
             {"yu", "ю"},
             {"Yu", "Ю"},
             {"YU", "Ю"},
@@ -164,7 +165,7 @@ public class SubWordLibrary implements Translate{
             {"SYOM", "СЪЁМ"}
     };
 
-    public final String[][] subWordsCyrillicInitial = {
+    public static final String[][] subWordsCyrillicInitial = {
             {"ўъжаз", "oʻjaz"},
             {"ЎЪЖАЗ", "OʻJAZ"},
             {"ўъжиза", "oʻjiza"},
@@ -380,4 +381,48 @@ public class SubWordLibrary implements Translate{
     //"ъ" "’" "ъ"
     //"ь" ""
     //q,g', x, h, o', yo, yu, ya, Ь,
+
+    private static final List<Pair> subWordsLatinInitialPattern = new ArrayList<>();
+
+    public static final List<Pair> subWordsCyrillicInitialPattern = new ArrayList<>();
+
+    static {
+
+        Arrays.sort(SubWordLibrary.subWordsCyrillicInitial, (strings, t1) -> t1[0].length() - strings[0].length());
+        Arrays.sort(SubWordLibrary.subWordsLatinInitial, (strings, t1) -> t1[0].length() - strings[0].length());
+
+        for (String[] strings : SubWordLibrary.subWordsLatinInitial) {
+            subWordsLatinInitialPattern.add(new Pair(
+                    Pattern.compile(strings[0]),
+                    strings[1]
+            ));
+        }
+
+        for (String[] strings : SubWordLibrary.subWordsCyrillicInitial) {
+            subWordsCyrillicInitialPattern.add(new Pair(
+                    Pattern.compile(strings[0]),
+                    strings[1]
+            ));
+        }
+    }
+
+    static class Pair {
+
+        private final Pattern pattern;
+
+        private final String word;
+
+        Pair(Pattern pattern, String word) {
+            this.pattern = pattern;
+            this.word = word;
+        }
+
+        public Pattern getPattern() {
+            return pattern;
+        }
+
+        public String getWord() {
+            return word;
+        }
+    }
 }
