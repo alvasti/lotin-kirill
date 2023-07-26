@@ -33,6 +33,9 @@ public class WordTranslator implements Translate {
     public String translateToLatin(String word) {
         word = wordsLibrary.translateToLatin(word);
         word = subWordLibrary.translateToLatin(word);
+        while (word.charAt(word.length() - 1) == lettersCompatibility.getCyrChar()[0] || word.charAt(word.length() - 1) == lettersCompatibility.getCyrChar()[1]) {
+            word = word.substring(0, word.length() - 1);
+        }
         var wordCharSeq = word.toCharArray();
         StringBuilder wordTmp = new StringBuilder();
         for (char c : wordCharSeq) {

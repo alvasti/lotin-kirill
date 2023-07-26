@@ -12,12 +12,12 @@ public class LatinUzAlphabet implements Alphabet {
 
     /*
      699 -  o' ning belgisi, 6 o'ning
-     700 - tutuq belgisi,9 tutuq belgisi
+     39 ' - tutuq belgisi,9 tutuq belgisi
      */
                                                 //0                              1                    2                  3             4     5     6     7     8     9
     private final String[] combinedLetters = {"O" + ((char)(699)), "o" + ((char)(699)), "G" + ((char)(699)), "g" + ((char)(699)), "Sh", "sh", "Ch", "ch", "Ng", "ng"};
 
-    private final Character[] characters = {700, 699};
+    private final Character[] characters = {39, 699};
 
     private final List<Character> allPossibleChars;
 

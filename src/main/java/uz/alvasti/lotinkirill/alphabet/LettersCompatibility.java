@@ -38,15 +38,6 @@ public class LettersCompatibility {
         l = 0;
         c = 0;
         lh.put(asString(latChar[l]), asString(cyrChar[c]));
-        //Ъ ga o'zbek tilida bir xil moslik , so'zni upper case ga tekshirib tarjima qilingan so'zni qaytib Uppercase o'tkkaziladi
-        l = 0;
-        c = 1;
-        ch.put(asString(cyrChar[c]), asString(latChar[l]));
-        //- belgisi
-        l = 1;
-        c = 2;
-        lh.put(asString(latChar[l]), asString(cyrChar[c]));
-
 
         //A
         l = 0;
@@ -75,11 +66,11 @@ public class LettersCompatibility {
         //Е kirill
         l = 6;
         c = 8;
-        lh.put(asString(//lat[44] + "" +
+        lh.put(asString(lat[44] + "" +
                 lat[l]), asString(cyr[c]));
         l = 7;
         c = 9;
-        lh.put(asString(//lat[45] + "" +
+        lh.put(asString(lat[45] + "" +
                 lat[l]), asString(cyr[c]));
 
         //F
@@ -314,6 +305,21 @@ public class LettersCompatibility {
         c = 7;
         ch.put(asString(cyr[c]), asString(lat[l]));
 
+        //Ъ ga o'zbek tilida bir xil moslik , so'zni upper case ga tekshirib tarjima qilingan so'zni qaytib Uppercase o'tkkaziladi
+        c = 0;
+        l = 0;
+        ch.put(asString(cyrChar[c]), asString(latChar[l]));
+        c = 1;
+        l = 0;
+        ch.put(asString(cyrChar[c]), asString(latChar[l]));
+
+
+        //ь ga o'zbek tilida bir xil moslik , so'zni upper case ga tekshirib tarjima qilingan so'zni qaytib Uppercase o'tkkaziladi
+        c = 2;
+        ch.put(asString(cyrChar[c]), "");
+        c = 3;
+        ch.put(asString(cyrChar[c]), "");
+
     }
 
 
@@ -347,6 +353,10 @@ public class LettersCompatibility {
 
     public boolean[] getOnlyLettersArrCyrillic() {
         return cyrillicUzAlphabet.getOnlyLettersArr();
+    }
+
+    public Character[] getCyrChar() {
+        return cyrChar;
     }
 
 }

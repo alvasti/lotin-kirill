@@ -343,9 +343,9 @@ public class SubWordLibrary implements Translate {
             {"циу", "siu"},
             {"Циу", "Siu"},
             {"ЦИУ", "SIU"},
-            {"СҲ", "SʼH"},
-            {"Сҳ", "Sʼh"},
-            {"сҳ", "sʼh"},
+            {"СҲ", "S'H"},
+            {"Сҳ", "S'h"},
+            {"сҳ", "s'h"},
             {"съём", "syom"},
             {"Съём", "Syom"},
             {"СЪЁМ", "SYOM"},
@@ -372,7 +372,11 @@ public class SubWordLibrary implements Translate {
             {"ЪЁ", "YO"},
             {"ъЁ", "YO"},
             {"Ъё", "yo"},
-            {"ъё", "yo"}
+            {"ъё", "yo"},
+            {"еъ", "e'"},
+            {"еЪ", "e'"},
+            {"Еъ", "E'"},
+            {"ЕЪ", "E'"}
     };
 
 
